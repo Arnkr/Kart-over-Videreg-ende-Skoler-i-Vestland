@@ -2,6 +2,24 @@
 
 En interaktiv webapplikasjon som viser et omfattende kart over alle videregående skoler i Vestland fylke, Norge. Prosjektet bruker moderne webteknologier for å gi en brukervennlig opplevelse med detaljert informasjon om hver skole.
 
+## � Beskrivelse
+
+Kart over Videregående Skoler i Vestland er utviklet for å gjøre informasjon om videregående utdanning lettere tilgjengelig for elever, foreldre og rådgivere i Vestland fylke. Prosjektet løser utfordringen med å finne relevant informasjon om skolers beliggenhet, studieprogrammer og kontaktinformasjon ved å presentere alt på ett interaktivt kart.
+
+**Hovedmål:**
+- Gi oversiktlig informasjon om alle videregående skoler i Vestland
+- Forenkle skolevalgsprosessen for ungdom
+- Tilby filtreringsmuligheter for å finne skoler basert på geografi og interesser
+- Sørge for oppdatert og nøyaktig informasjon fra offisielle kilder
+
+**Målgruppe:**
+- Videregående elever som skal velge skole
+- Foreldre som ønsker å informere seg om skolealternativer
+- Utdanningsrådgivere og lærere
+- Alle som er interessert i utdanningstilbudet i Vestland
+
+Kartet dekker både offentlige skoler drevet av Vestland fylkeskommune og private alternativer, inkludert skoler med spesialiserte programmer som maritime fag, musikk, idrett og internasjonal baccalaureate.
+
 ## 🚀 Funksjoner
 
 - **Interaktivt kart** med OpenStreetMap-fliser
