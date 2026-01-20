@@ -62,7 +62,7 @@ For å gjøre kartet tilgjengelig for andre utenfor ditt lokale nettverk:
 1. Start serveren som vanlig
 2. I en ny terminal, kjør:
    ```bash
-   ngrok http 5000
+   ngrok http 5001
    ```
 3. Del den genererte HTTPS-URLen med andre
 
