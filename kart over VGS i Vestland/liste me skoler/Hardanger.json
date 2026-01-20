@@ -1,0 +1,57 @@
+[
+  {
+    "name": "Odda vidaregåande skule",
+    "address": "Tyssedalsvegen 10, 5750 Odda",
+    "municipality": "Ullensvang",
+    "ownership": "Offentlig",
+    "region": "Hardanger",
+    "lat": 60.0690,
+    "lon": 6.5450,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Bygg- og anleggsteknikk",
+      "Restaurant- og matfag",
+      "Påbygg"
+    ],
+    "website": "https://www.odda.vgs.no"
+  },
+  {
+    "name": "Kvam vidaregåande skule",
+    "address": "Øystesevegen 650, 5610 Øystese",
+    "municipality": "Ullensvang",
+    "ownership": "Offentlig",
+    "region": "Hardanger",
+    "lat": 60.3860,
+    "lon": 6.2050,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Naturbruk",
+      "Påbygg"
+    ],
+    "website": "https://www.kvam.vgs.no"
+  },
+  {
+    "name": "Framnes kristne vidaregåande skule",
+    "address": "Framnesvegen 116, 5600 Norheimsund",
+    "municipality": "Ullensvang",
+    "ownership": "Privat",
+    "region": "Hardanger",
+    "lat": 60.3700,
+    "lon": 6.1500,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Idrettsfag",
+      "Påbygg"
+    ],
+    "website": "https://www.framnes.vgs.no"
+  }
+]

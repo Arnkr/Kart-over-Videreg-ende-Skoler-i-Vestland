@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Knarvik vidaregåande skule",
+    "address": "Kvassnesvegen 40, 5914 Isdalstø",
+    "municipality": "Alver",
+    "ownership": "Offentlig",
+    "region": "Nordhordland",
+    "lat": 60.5443,
+    "lon": 5.2855,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Helse- og oppvekstfag",
+      "Elektro og datateknologi",
+      "Teknologi- og industrifag",
+      "Bygg- og anleggsteknikk",
+      "Restaurant- og matfag",
+      "Påbygg"
+    ],
+    "website": "https://www.knarvik.vgs.no"
+  },
+  {
+    "name": "Osterøy vidaregåande skule",
+    "address": "Lonevåg, 5282 Lonevåg",
+    "municipality": "Osterøy",
+    "ownership": "Offentlig",
+    "region": "Nordhordland",
+    "lat": 60.5330,
+    "lon": 5.4880,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Bygg- og anleggsteknikk",
+      "Påbygg"
+    ],
+    "website": "https://www.osteroy.vgs.no"
+  },
+  {
+    "name": "Austrheim vidaregåande skule",
+    "address": "Åråsvegen 1, 5943 Austrheim",
+    "municipality": "Austrheim",
+    "ownership": "Offentlig",
+    "region": "Nordhordland",
+    "lat": 60.7800,
+    "lon": 4.9500,
+    "program": [
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Påbygg"
+    ],
+    "website": "https://www.austrheim.vgs.no"
+  },
+  {
+    "name": "Manger folkehøgskule (videregående tilbud: musikk)",
+    "address": "Radøyvegen 1885, 5936 Manger",
+    "municipality": "Alver",
+    "ownership": "Privat",
+    "region": "Nordhordland",
+    "lat": 60.6370,
+    "lon": 5.0330,
+    "program": [
+      "Studiespesialisering med musikkprofil"
+    ],
+    "website": "https://www.manger.fhs.no"
+  },
+  {
+    "name": "Nordhordland Kristne Grunnskole og Vidaregåande",
+    "address": "Myrane 6, 5914 Isdalstø",
+    "municipality": "Alver",
+    "ownership": "Privat",
+    "region": "Nordhordland",
+    "lat": 60.5450,
+    "lon": 5.2860,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi"
+    ],
+    "website": "https://www.nkg.vgs.no"
+  }
+]

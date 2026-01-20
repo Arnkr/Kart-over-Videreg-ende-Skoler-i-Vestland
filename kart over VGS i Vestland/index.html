@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kart over Videregående Skoler i Vestland</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #48484b 0%, #2b404d 100%);
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+        h1 {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #fff;
+            text-align: center;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .filter-toggle-btn {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s;
+            backdrop-filter: blur(10px);
+        }
+        .filter-toggle-btn i {
+            transition: transform 0.3s;
+        }
+        .container {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+        .filter-panel {
+            position: absolute;
+            left: 20px;
+            top: 100px;
+            width: 300px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            max-height: calc(100vh - 140px);
+            overflow-y: auto;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        .filter-panel.show {
+            opacity: 1;
+            transform: translateX(0);
+            pointer-events: auto;
+        }
+        .filter-panel h2 {
+            margin-top: 0;
+            font-size: 1.5em;
+            color: #333;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 10px;
+        }
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .filter-close-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #666;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+        .filter-close-btn:hover {
+            background-color: rgba(0,0,0,0.1);
+        }
+        .filter-group {
+            margin-bottom: 20px;
+        }
+        .filter-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: #555;
+        }
+        .filter-group input, .filter-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        .filter-group input:focus, .filter-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+        }
+        .filter-group button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .filter-group button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        #map {
+            flex: 1;
+            border-radius: 15px;
+            margin: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .leaflet-popup-content-wrapper {
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .leaflet-popup-content {
+            margin: 15px;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+            .filter-panel {
+                position: relative;
+                left: auto;
+                top: auto;
+                width: auto;
+                margin: 20px;
+                max-height: none;
+            }
+            #map {
+                margin: 20px 20px 20px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Kart over Videregående Skoler i Vestland <button id="filter-toggle" class="filter-toggle-btn"><i class="fas fa-cog"></i></button></h1>
+    <div class="container">
+        <div class="filter-panel" id="filter-panel">
+            <div class="filter-header">
+                <h2>Filtrer skoler</h2>
+                <button id="filter-close" class="filter-close-btn"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="filter-group">
+                <label for="region-filter">Region:</label>
+                <select id="region-filter">
+                    <option value="">Alle regioner</option>
+                    <option value="Bergen">Bergen</option>
+                    <option value="Nordhordland">Nordhordland</option>
+                    <option value="Sunnhordland">Sunnhordland</option>
+                    <option value="Hardanger">Hardanger</option>
+                    <option value="Voss">Voss</option>
+                    <option value="Sogn">Sogn</option>
+                    <option value="Sunnfjord">Sunnfjord</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="ownership-filter">Eierskap:</label>
+                <select id="ownership-filter">
+                    <option value="">Alle typer</option>
+                    <option value="Offentlig">Offentlig</option>
+                    <option value="Privat">Privat</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="search-filter">Søk etter navn:</label>
+                <input type="text" id="search-filter" placeholder="Skriv skole navn...">
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+
+    <script>
+        // Combined school data
+        const allSchools = [
+  {
+    "name": "Amalie Skram videregående skole",
+    "address": "Lungegårdskaien 40, 5015 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3925,
+    "lon": 5.3243,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Informasjonsteknologi og medieproduksjon",
+      "Medium og kommunikasjon",
+      "Sal, service og reiseliv",
+      "Påbygg"
+    ],
+    "website": "https://www.amalieskram.vgs.no"
+  },
+  {
+    "name": "Årstad videregående skole",
+    "address": "Danmarks plass 7, 5058 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3737,
+    "lon": 5.3411,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Informasjonsteknologi og medieproduksjon",
+      "Påbygg"
+    ],
+    "website": "https://www.arstad.vgs.no"
+  },
+  {
+    "name": "Bergen Katedralskole",
+    "address": "Kong Oscars gate 36, 5017 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3920,
+    "lon": 5.3260,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Internasjonal Baccalaureate (IB)",
+      "Påbygg"
+    ],
+    "website": "https://www.katten.vgs.no"
+  },
+  {
+    "name": "Bergen Private Gymnas (BPG)",
+    "address": "Strandgaten 197, 5004 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Privat",
+    "region": "Bergen",
+    "lat": 60.3950,
+    "lon": 5.3180,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi"
+    ],
+    "website": "https://www.bpg.no"
+  },
+  {
+    "name": "Metis videregående skole",
+    "address": "Lars Hilles gate 17, 5008 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Privat",
+    "region": "Bergen",
+    "lat": 60.3895,
+    "lon": 5.3300,
+    "program": [
+      "Studiespesialisering",
+      "Helse- og oppvekstfag",
+      "Påbygg"
+    ],
+    "website": "https://www.metis.no"
+  },
+  {
+    "name": "Knarvik vidaregåande skule",
+    "address": "Kvassnesvegen 40, 5914 Isdalstø",
+    "municipality": "Alver",
+    "ownership": "Offentlig",
+    "region": "Nordhordland",
+    "lat": 60.5443,
+    "lon": 5.2855,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Helse- og oppvekstfag",
+      "Elektro og datateknologi",
+      "Teknologi- og industrifag",
+      "Bygg- og anleggsteknikk",
+      "Restaurant- og matfag",
+      "Påbygg"
+    ],
+    "website": "https://www.knarvik.vgs.no"
+  },
+  {
+    "name": "Osterøy vidaregåande skule",
+    "address": "Lonevåg, 5282 Lonevåg",
+    "municipality": "Osterøy",
+    "ownership": "Offentlig",
+    "region": "Nordhordland",
+    "lat": 60.5330,
+    "lon": 5.4880,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Bygg- og anleggsteknikk",
+      "Påbygg"
+    ],
+    "website": "https://www.osteroy.vgs.no"
+  },
+  {
+    "name": "Austrheim vidaregåande skule",
+    "address": "Åråsvegen 1, 5943 Austrheim",
+    "municipality": "Austrheim",
+    "ownership": "Offentlig",
+    "region": "Nordhordland",
+    "lat": 60.7800,
+    "lon": 4.9500,
+    "program": [
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Påbygg"
+    ],
+    "website": "https://www.austrheim.vgs.no"
+  },
+  {
+    "name": "Manger folkehøgskule (videregående tilbud: musikk)",
+    "address": "Radøyvegen 1885, 5936 Manger",
+    "municipality": "Alver",
+    "ownership": "Privat",
+    "region": "Nordhordland",
+    "lat": 60.6370,
+    "lon": 5.0330,
+    "program": [
+      "Studiespesialisering med musikkprofil"
+    ],
+    "website": "https://www.manger.fhs.no"
+  },
+  {
+    "name": "Nordhordland Kristne Grunnskole og Vidaregåande",
+    "address": "Myrane 6, 5914 Isdalstø",
+    "municipality": "Alver",
+    "ownership": "Privat",
+    "region": "Nordhordland",
+    "lat": 60.5450,
+    "lon": 5.2860,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi"
+    ],
+    "website": "https://www.nkg.vgs.no"
+  },
+  {
+    "name": "Stord vidaregåande skule",
+    "address": "Saghaugen 3, 5411 Stord",
+    "municipality": "Stord",
+    "ownership": "Offentlig",
+    "region": "Sunnhordland",
+    "lat": 59.7790,
+    "lon": 5.5005,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Helse- og oppvekstfag",
+      "Elektro og datateknologi",
+      "Teknologi- og industrifag",
+      "Bygg- og anleggsteknikk",
+      "Restaurant- og matfag",
+      "Informasjonsteknologi og medieproduksjon",
+      "Påbygg"
+    ],
+    "website": "https://www.stord.vgs.no"
+  },
+  {
+    "name": "Bømlo vidaregåande skule",
+    "address": "Hollundsdalen 3, 5430 Bremnes",
+    "municipality": "Bømlo",
+    "ownership": "Offentlig",
+    "region": "Sunnhordland",
+    "lat": 59.7960,
+    "lon": 5.2400,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Bygg- og anleggsteknikk",
+      "Restaurant- og matfag",
+      "Påbygg"
+    ],
+    "website": "https://www.bomlo.vgs.no"
+  },
+  {
+    "name": "Kvamme vidaregåande skule (tidl. Kvinnherad vgs)",
+    "address": "Skålagato 36, 5470 Rosendal",
+    "municipality": "Kvinnherad",
+    "ownership": "Offentlig",
+    "region": "Sunnhordland",
+    "lat": 59.9850,
+    "lon": 6.0100,
+    "program": [
+      "Studiespesialisering",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Naturbruk",
+      "Påbygg"
+    ],
+    "website": "https://www.kvinnherad.vgs.no"
+  },
+  {
+    "name": "Rubbestadnes vidaregåande skule",
+    "address": "Høgskulevegen 14, 5420 Rubbestadneset",
+    "municipality": "Bømlo",
+    "ownership": "Offentlig",
+    "region": "Sunnhordland",
+    "lat": 59.8200,
+    "lon": 5.3100,
+    "program": [
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Maritime fag",
+      "Påbygg"
+    ],
+    "website": "https://www.rubbestadnes.vgs.no"
+  },
+  {
+    "name": "Fitjar vidaregåande skule",
+    "address": "Gamle Havnavegen 2, 5419 Fitjar",
+    "municipality": "Fitjar",
+    "ownership": "Offentlig",
+    "region": "Sunnhordland",
+    "lat": 59.9180,
+    "lon": 5.3160,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Påbygg"
+    ],
+    "website": "https://www.fitjar.vgs.no"
+  },
+  {
+    "name": "Tysnes vidaregåande skule",
+    "address": "Uggdalsvegen 301, 5685 Uggdal",
+    "municipality": "Tysnes",
+    "ownership": "Offentlig",
+    "region": "Sunnhordland",
+    "lat": 60.0160,
+    "lon": 5.5800,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Påbygg"
+    ],
+    "website": "https://www.tysnes.vgs.no"
+  },
+  {
+    "name": "Sveio Montessori vidaregåande",
+    "address": "Sveiogata 70, 5550 Sveio",
+    "municipality": "Sveio",
+    "ownership": "Privat",
+    "region": "Sunnhordland",
+    "lat": 59.5430,
+    "lon": 5.3500,
+    "program": [
+      "Studiespesialisering"
+    ],
+    "website": "https://www.sveiomontessori.no"
+  },
+  {
+    "name": "Olsvikåsen videregående skole",
+    "address": "Olsvikåsen 152, 5183 Olsvik",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3786,
+    "lon": 5.2206,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Kunst, design og arkitektur",
+      "Helse- og oppvekstfag",
+      "Helse- og oppvekstfag (3-årig studiekompetanse)",
+      "Barne- og ungdomsarbeiderfag",
+      "Tilrettelagt opplæring"
+    ],
+    "website": "https://www.olsvikasen.vgs.no"
+  },
+  {
+    "name": "Fyllingsdalen videregående skole",
+    "address": "Folke Bernadottes vei 41, 5147 Fyllingsdalen",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3419,
+    "lon": 5.3028,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Idrettsfag",
+      "Helse- og oppvekstfag",
+      "Informasjonsteknologi og medieproduksjon",
+      "Påbygg"
+    ],
+    "website": "https://www.fyllingsdalen.vgs.no"
+  },
+  {
+    "name": "Slåtthaug videregående skole",
+    "address": "Slåtthaugvegen 142, 5222 Nesttun",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3085,
+    "lon": 5.3530,
+    "program": [
+      "Idrettsfag",
+      "Studiespesialisering",
+      "Påbygg"
+    ],
+    "website": "https://www.slatthaug.vgs.no"
+  },
+  {
+    "name": "Tertnes videregående skole",
+    "address": "Tertnesveien 31, 5113 Tertnes",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.4500,
+    "lon": 5.3520,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Påbygg",
+      "Tilrettelagt opplæring"
+    ],
+    "website": "https://www.tertnes.vgs.no"
+  },
+  {
+    "name": "Åsane videregående skole",
+    "address": "Åsane Senter 52, 5116 Ulset",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.4690,
+    "lon": 5.3250,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Informasjonsteknologi og medieproduksjon",
+      "Helse- og oppvekstfag",
+      "Restaurant- og matfag",
+      "Påbygg"
+    ],
+    "website": "https://www.asane.vgs.no"
+  },
+  {
+    "name": "Langhaugen videregående skole",
+    "address": "Langhaugen 20, 5093 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3445,
+    "lon": 5.3535,
+    "program": [
+      "Musikk, dans og drama",
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi"
+    ],
+    "website": "https://www.langhaugen.vgs.no"
+  },
+  {
+    "name": "Sandsli videregående skole",
+    "address": "Sandslivegen 102, 5254 Sandsli",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3080,
+    "lon": 5.2850,
+    "program": [
+      "Informasjonsteknologi og medieproduksjon",
+      "Elektro og datateknologi",
+      "Teknologi- og industrifag",
+      "Studiespesialisering",
+      "Påbygg"
+    ],
+    "website": "https://www.sandsli.vgs.no"
+  },
+  {
+    "name": "Sotra videregående skole",
+    "address": "Grønamyrvegen 30, 5353 Straume",
+    "municipality": "Øygarden",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3570,
+    "lon": 5.1180,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Helse- og oppvekstfag",
+      "Elektro og datateknologi",
+      "Teknologi- og industrifag",
+      "Bygg- og anleggsteknikk",
+      "Restaurant- og matfag",
+      "Påbygg"
+    ],
+    "website": "https://www.sotra.vgs.no"
+  },
+  {
+    "name": "Askøy videregående skole",
+    "address": "Kleppestøvegen 2, 5300 Kleppestø",
+    "municipality": "Askøy",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.4030,
+    "lon": 5.2250,
+    "program": [
+      "Studiespesialisering",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Påbygg"
+    ],
+    "website": "https://www.askoy.vgs.no"
+  },
+  {
+    "name": "Akademiet Bergen",
+    "address": "Nygårdsgaten 112, 5008 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Privat",
+    "region": "Bergen",
+    "lat": 60.3830,
+    "lon": 5.3300,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Påbygg"
+    ],
+    "website": "https://www.akademiet.no"
+  },
+  {
+    "name": "Laksevåg og Bergen maritime vidaregåande skule",
+    "address": "Odd Frantzens plass 6, 5008 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3890,
+    "lon": 5.2650,
+    "program": [
+      "Bygg- og anleggsteknikk",
+      "Tømrer",
+      "Elektro og datateknologi",
+      "Automatisering",
+      "Elenergi og ekom",
+      "Maritim elektriker",
+      "Teknologi- og industrifag",
+      "Kjemiprosess og laboratoriefag",
+      "Brønnteknikk",
+      "Maritime fag"
+    ],
+    "website": "https://www.lbm.vgs.no"
+  },
+  {
+    "name": "Danielsen videregående skole",
+    "address": "Kalfarveien 8, 5018 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Privat",
+    "region": "Bergen",
+    "lat": 60.3870,
+    "lon": 5.3390,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi"
+    ],
+    "website": "https://www.danielsen-skoler.no"
+  },
+  {
+    "name": "Odda vidaregåande skule",
+    "address": "Tyssedalsvegen 10, 5750 Odda",
+    "municipality": "Ullensvang",
+    "ownership": "Offentlig",
+    "region": "Hardanger",
+    "lat": 60.0690,
+    "lon": 6.5450,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Bygg- og anleggsteknikk",
+      "Restaurant- og matfag",
+      "Påbygg"
+    ],
+    "website": "https://www.odda.vgs.no"
+  },
+  {
+    "name": "Kvam vidaregåande skule",
+    "address": "Øystesevegen 650, 5610 Øystese",
+    "municipality": "Ullensvang",
+    "ownership": "Offentlig",
+    "region": "Hardanger",
+    "lat": 60.3860,
+    "lon": 6.2050,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Naturbruk",
+      "Påbygg"
+    ],
+    "website": "https://www.kvam.vgs.no"
+  },
+  {
+    "name": "Framnes kristne vidaregåande skule",
+    "address": "Framnesvegen 116, 5600 Norheimsund",
+    "municipality": "Ullensvang",
+    "ownership": "Privat",
+    "region": "Hardanger",
+    "lat": 60.3700,
+    "lon": 6.1500,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Idrettsfag",
+      "Påbygg"
+    ],
+    "website": "https://www.framnes.vgs.no"
+  },
+  {
+    "name": "Voss vidaregåande skule",
+    "address": "Gymnasvegen 5, 5700 Voss",
+    "municipality": "Voss",
+    "ownership": "Offentlig",
+    "region": "Voss",
+    "lat": 60.6280,
+    "lon": 6.4140,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Idrettsfag",
+      "Musikk, dans og drama",
+      "Helse- og oppvekstfag",
+      "Elektro og datateknologi",
+      "Teknologi- og industrifag",
+      "Bygg- og anleggsteknikk",
+      "Restaurant- og matfag",
+      "Naturbruk",
+      "Påbygg"
+    ],
+    "website": "https://www.voss.vgs.no"
+  },
+  {
+    "name": "Sogndal vidaregåande skule",
+    "address": "Fossvegen 3, 6856 Sogndal",
+    "municipality": "Sogndal",
+    "ownership": "Offentlig",
+    "region": "Sogn",
+    "lat": 61.2290,
+    "lon": 7.1010,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Idrettsfag",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Informasjonsteknologi og medieproduksjon",
+      "Restaurant- og matfag",
+      "Påbygg"
+    ],
+    "website": "https://www.sogndal.vgs.no"
+  },
+  {
+    "name": "Årdal vidaregåande skule",
+    "address": "Storevegen 8, 6884 Øvre Årdal",
+    "municipality": "Årdal",
+    "ownership": "Offentlig",
+    "region": "Sogn",
+    "lat": 61.3160,
+    "lon": 7.8060,
+    "program": [
+      "Studiespesialisering",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Påbygg"
+    ],
+    "website": "https://www.aardal.vgs.no"
+  },
+  {
+    "name": "Luster vidaregåande skule",
+    "address": "Gaupnegrandane 20, 6868 Gaupne",
+    "municipality": "Luster",
+    "ownership": "Offentlig",
+    "region": "Sogn",
+    "lat": 61.4080,
+    "lon": 7.2970,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Naturbruk",
+      "Påbygg"
+    ],
+    "website": "https://www.luster.vgs.no"
+  },
+  {
+    "name": "Høyanger vidaregåande skule",
+    "address": "Skulevegen 10, 6993 Høyanger",
+    "municipality": "Høyanger",
+    "ownership": "Offentlig",
+    "region": "Sogn",
+    "lat": 61.2160,
+    "lon": 6.0700,
+    "program": [
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Helse- og oppvekstfag",
+      "Påbygg"
+    ],
+    "website": "https://www.hoyanger.vgs.no"
+  },
+  {
+    "name": "Aurland vidaregåande skule",
+    "address": "Vangen 1, 5745 Aurland",
+    "municipality": "Aurland",
+    "ownership": "Offentlig",
+    "region": "Sogn",
+    "lat": 60.9070,
+    "lon": 7.1880,
+    "program": [
+      "Naturbruk",
+      "Reiseliv",
+      "Påbygg"
+    ],
+    "website": "https://www.aurland.vgs.no"
+  },
+  {
+    "name": "Sogn Jord- og Hagebruksskule",
+    "address": "Skulevegen 24, 5745 Aurland",
+    "municipality": "Aurland",
+    "ownership": "Offentlig",
+    "region": "Sogn",
+    "lat": 60.9075,
+    "lon": 7.1890,
+    "program": [
+      "Naturbruk økologisk",
+      "Bærekraftig landbruk",
+      "Påbygg"
+    ],
+    "website": "https://www.sjh.no"
+  },
+  {
+    "name": "Førde vidaregåande skule",
+    "address": "Halbrendslia 16, 6814 Førde",
+    "municipality": "Sunnfjord",
+    "ownership": "Offentlig",
+    "region": "Sunnfjord",
+    "lat": 61.4520,
+    "lon": 5.8570,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Idrettsfag",
+      "Musikk, dans og drama",
+      "Helse- og oppvekstfag",
+      "Elektro og datateknologi",
+      "Teknologi- og industrifag",
+      "Bygg- og anleggsteknikk",
+      "Restaurant- og matfag",
+      "Informasjonsteknologi og medieproduksjon",
+      "Påbygg"
+    ],
+    "website": "https://www.forde.vgs.no"
+  },
+  {
+    "name": "Firda vidaregåande skule",
+    "address": "Sandplassen 7, 6823 Sandane",
+    "municipality": "Gloppen",
+    "ownership": "Offentlig",
+    "region": "Sunnfjord",
+    "lat": 61.7720,
+    "lon": 6.2140,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Idrettsfag",
+      "Musikk, dans og drama",
+      "Helse- og oppvekstfag",
+      "Påbygg"
+    ],
+    "website": "https://www.firda.vgs.no"
+  },
+  {
+    "name": "Måløy vidaregåande skule",
+    "address": "Gate 1 nr. 210, 6700 Måløy",
+    "municipality": "Kinn",
+    "ownership": "Offentlig",
+    "region": "Sunnfjord",
+    "lat": 61.9350,
+    "lon": 5.1130,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Maritime fag",
+      "Påbygg"
+    ],
+    "website": "https://www.maloy.vgs.no"
+  },
+  {
+    "name": "Flora vidaregåande skule",
+    "address": "Markegata 51, 6905 Florø",
+    "municipality": "Kinn",
+    "ownership": "Offentlig",
+    "region": "Sunnfjord",
+    "lat": 61.5990,
+    "lon": 5.0320,
+    "program": [
+      "Studiespesialisering",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Restaurant- og matfag",
+      "Påbygg"
+    ],
+    "website": "https://www.flora.vgs.no"
+  },
+  {
+    "name": "Stryn vidaregåande skule",
+    "address": "Tonningsgata 4, 6783 Stryn",
+    "municipality": "Stryn",
+    "ownership": "Offentlig",
+    "region": "Sunnfjord",
+    "lat": 61.9030,
+    "lon": 6.7180,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Idrettsfag",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Påbygg"
+    ],
+    "website": "https://www.stryn.vgs.no"
+  },
+  {
+    "name": "Dale vidaregåande skule",
+    "address": "Skulevegen 14, 6963 Dale i Sunnfjord",
+    "municipality": "Fjaler",
+    "ownership": "Offentlig",
+    "region": "Sunnfjord",
+    "lat": 61.3630,
+    "lon": 5.4000,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Påbygg"
+    ],
+    "website": "https://www.dale.vgs.no"
+  },
+  {
+    "name": "Sygna vidaregåande skule",
+    "address": "Sygna 1, 6863 Leikanger",
+    "municipality": "Sogndal",
+    "ownership": "Privat",
+    "region": "Sunnfjord",
+    "lat": 61.1830,
+    "lon": 6.8500,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Idrettsfag",
+      "Påbygg"
+    ],
+    "website": "https://www.sygna.vgs.no"
+  }
+];
+
+        // Initialiser kartet sentrert på Vestland
+        var map = L.map('map').setView([60.5, 5.5], 8);
+
+        // Legg til OpenStreetMap-fliser
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Array for å holde markører
+        let markers = [];
+
+        // Legg til markører for hver skole
+        allSchools.forEach(school => {
+            // Lag en markør for hver skole
+            var marker = L.marker([school.lat, school.lon]);
+
+            // Lag popup-innhold med skoleinformasjon
+            var popupContent = `
+                <b>${school.name}</b><br>
+                Adresse: ${school.address}<br>
+                Kommune: ${school.municipality}<br>
+                Eierskap: ${school.ownership}<br>
+                Region: ${school.region}<br>
+                Programmer: ${school.program.join(', ')}<br>
+                <a href="${school.website}" target="_blank">Besøk nettsted</a>
+            `;
+
+            marker.bindPopup(popupContent);
+            markers.push({ marker: marker, school: school });
+        });
+
+        // Funksjon for å filtrere markører
+        function filterMarkers() {
+            const regionFilter = document.getElementById('region-filter').value;
+            const ownershipFilter = document.getElementById('ownership-filter').value;
+            const searchFilter = document.getElementById('search-filter').value.toLowerCase();
+
+            markers.forEach(item => {
+                const school = item.school;
+                const marker = item.marker;
+
+                const matchesRegion = !regionFilter || school.region === regionFilter;
+                const matchesOwnership = !ownershipFilter || school.ownership === ownershipFilter;
+                const matchesSearch = !searchFilter || school.name.toLowerCase().includes(searchFilter);
+
+                if (matchesRegion && matchesOwnership && matchesSearch) {
+                    if (!map.hasLayer(marker)) {
+                        marker.addTo(map);
+                    }
+                } else {
+                    if (map.hasLayer(marker)) {
+                        map.removeLayer(marker);
+                    }
+                }
+            });
+        }
+
+        // Legg til event listeners for filtrene
+        document.getElementById('region-filter').addEventListener('change', filterMarkers);
+        document.getElementById('ownership-filter').addEventListener('change', filterMarkers);
+        document.getElementById('search-filter').addEventListener('input', filterMarkers);
+
+        // Toggle filter panel
+        document.getElementById('filter-toggle').addEventListener('click', function() {
+            const panel = document.getElementById('filter-panel');
+            const icon = this.querySelector('i');
+            panel.classList.toggle('show');
+            if (panel.classList.contains('show')) {
+                icon.style.transform = 'rotate(90deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        });
+
+        // Close filter panel
+        document.getElementById('filter-close').addEventListener('click', function() {
+            const panel = document.getElementById('filter-panel');
+            panel.classList.remove('show');
+        });
+
+        // Close filter panel when clicking outside
+        document.addEventListener('click', function(event) {
+            const panel = document.getElementById('filter-panel');
+            const toggleBtn = document.getElementById('filter-toggle');
+            if (!panel.contains(event.target) && !toggleBtn.contains(event.target)) {
+                panel.classList.remove('show');
+            }
+        });
+
+        // Vis alle markører først
+        markers.forEach(item => item.marker.addTo(map));
+    </script>
+</body>
+</html>

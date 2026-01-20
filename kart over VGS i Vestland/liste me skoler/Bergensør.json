@@ -1,0 +1,190 @@
+[
+  {
+    "name": "Olsvikåsen videregående skole",
+    "address": "Olsvikåsen 152, 5183 Olsvik",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3786,
+    "lon": 5.2206,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Kunst, design og arkitektur",
+      "Helse- og oppvekstfag",
+      "Helse- og oppvekstfag (3-årig studiekompetanse)",
+      "Barne- og ungdomsarbeiderfag",
+      "Tilrettelagt opplæring"
+    ],
+    "website": "https://www.olsvikasen.vgs.no"
+  },
+  {
+    "name": "Fyllingsdalen videregående skole",
+    "address": "Folke Bernadottes vei 41, 5147 Fyllingsdalen",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3419,
+    "lon": 5.3028,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Idrettsfag",
+      "Helse- og oppvekstfag",
+      "Informasjonsteknologi og medieproduksjon",
+      "Påbygg"
+    ],
+    "website": "https://www.fyllingsdalen.vgs.no"
+  },
+  {
+    "name": "Slåtthaug videregående skole",
+    "address": "Slåtthaugvegen 142, 5222 Nesttun",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3085,
+    "lon": 5.3530,
+    "program": [
+      "Idrettsfag",
+      "Studiespesialisering",
+      "Påbygg"
+    ],
+    "website": "https://www.slatthaug.vgs.no"
+  },
+  {
+    "name": "Tertnes videregående skole",
+    "address": "Tertnesveien 31, 5113 Tertnes",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.4500,
+    "lon": 5.3520,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Påbygg",
+      "Tilrettelagt opplæring"
+    ],
+    "website": "https://www.tertnes.vgs.no"
+  },
+  {
+    "name": "Åsane videregående skole",
+    "address": "Åsane Senter 52, 5116 Ulset",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.4690,
+    "lon": 5.3250,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Informasjonsteknologi og medieproduksjon",
+      "Helse- og oppvekstfag",
+      "Restaurant- og matfag",
+      "Påbygg"
+    ],
+    "website": "https://www.asane.vgs.no"
+  },
+  {
+    "name": "Langhaugen videregående skole",
+    "address": "Langhaugen 20, 5093 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3445,
+    "lon": 5.3535,
+    "program": [
+      "Musikk, dans og drama",
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi"
+    ],
+    "website": "https://www.langhaugen.vgs.no"
+  },
+  {
+    "name": "Sandsli videregående skole",
+    "address": "Sandslivegen 102, 5254 Sandsli",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3080,
+    "lon": 5.2850,
+    "program": [
+      "Informasjonsteknologi og medieproduksjon",
+      "Elektro og datateknologi",
+      "Teknologi- og industrifag",
+      "Studiespesialisering",
+      "Påbygg"
+    ],
+    "website": "https://www.sandsli.vgs.no"
+  },
+  {
+    "name": "Sotra videregående skole",
+    "address": "Grønamyrvegen 30, 5353 Straume",
+    "municipality": "Øygarden",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3570,
+    "lon": 5.1180,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Helse- og oppvekstfag",
+      "Elektro og datateknologi",
+      "Teknologi- og industrifag",
+      "Bygg- og anleggsteknikk",
+      "Restaurant- og matfag",
+      "Påbygg"
+    ],
+    "website": "https://www.sotra.vgs.no"
+  },
+  {
+    "name": "Askøy videregående skole",
+    "address": "Kleppestøvegen 2, 5300 Kleppestø",
+    "municipality": "Askøy",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.4030,
+    "lon": 5.2250,
+    "program": [
+      "Studiespesialisering",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Påbygg"
+    ],
+    "website": "https://www.askoy.vgs.no"
+  },
+  {
+    "name": "Akademiet Bergen",
+    "address": "Nygårdsgaten 112, 5008 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Privat",
+    "region": "Bergen",
+    "lat": 60.3830,
+    "lon": 5.3300,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Påbygg"
+    ],
+    "website": "https://www.akademiet.no"
+  },
+  {
+    "name": "Danielsen videregående skole",
+    "address": "Kalfarveien 8, 5018 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Privat",
+    "region": "Bergen",
+    "lat": 60.3870,
+    "lon": 5.3390,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi"
+    ],
+    "website": "https://www.danielsen-skoler.no"
+  }
+]

@@ -1,0 +1,131 @@
+[
+  {
+    "name": "Førde vidaregåande skule",
+    "address": "Halbrendslia 16, 6814 Førde",
+    "municipality": "Sunnfjord",
+    "ownership": "Offentlig",
+    "region": "Sunnfjord",
+    "lat": 61.4520,
+    "lon": 5.8570,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Idrettsfag",
+      "Musikk, dans og drama",
+      "Helse- og oppvekstfag",
+      "Elektro og datateknologi",
+      "Teknologi- og industrifag",
+      "Bygg- og anleggsteknikk",
+      "Restaurant- og matfag",
+      "Informasjonsteknologi og medieproduksjon",
+      "Påbygg"
+    ],
+    "website": "https://www.forde.vgs.no"
+  },
+  {
+    "name": "Firda vidaregåande skule",
+    "address": "Sandplassen 7, 6823 Sandane",
+    "municipality": "Gloppen",
+    "ownership": "Offentlig",
+    "region": "Sunnfjord",
+    "lat": 61.7720,
+    "lon": 6.2140,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Idrettsfag",
+      "Musikk, dans og drama",
+      "Helse- og oppvekstfag",
+      "Påbygg"
+    ],
+    "website": "https://www.firda.vgs.no"
+  },
+  {
+    "name": "Måløy vidaregåande skule",
+    "address": "Gate 1 nr. 210, 6700 Måløy",
+    "municipality": "Kinn",
+    "ownership": "Offentlig",
+    "region": "Sunnfjord",
+    "lat": 61.9350,
+    "lon": 5.1130,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Maritime fag",
+      "Påbygg"
+    ],
+    "website": "https://www.maloy.vgs.no"
+  },
+  {
+    "name": "Flora vidaregåande skule",
+    "address": "Markegata 51, 6905 Florø",
+    "municipality": "Kinn",
+    "ownership": "Offentlig",
+    "region": "Sunnfjord",
+    "lat": 61.5990,
+    "lon": 5.0320,
+    "program": [
+      "Studiespesialisering",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Restaurant- og matfag",
+      "Påbygg"
+    ],
+    "website": "https://www.flora.vgs.no"
+  },
+  {
+    "name": "Stryn vidaregåande skule",
+    "address": "Tonningsgata 4, 6783 Stryn",
+    "municipality": "Stryn",
+    "ownership": "Offentlig",
+    "region": "Sunnfjord",
+    "lat": 61.9030,
+    "lon": 6.7180,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Idrettsfag",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Påbygg"
+    ],
+    "website": "https://www.stryn.vgs.no"
+  },
+  {
+    "name": "Dale vidaregåande skule",
+    "address": "Skulevegen 14, 6963 Dale i Sunnfjord",
+    "municipality": "Fjaler",
+    "ownership": "Offentlig",
+    "region": "Sunnfjord",
+    "lat": 61.3630,
+    "lon": 5.4000,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Påbygg"
+    ],
+    "website": "https://www.dale.vgs.no"
+  },
+  {
+    "name": "Sygna vidaregåande skule",
+    "address": "Sygna 1, 6863 Leikanger",
+    "municipality": "Sogndal",
+    "ownership": "Privat",
+    "region": "Sunnfjord",
+    "lat": 61.1830,
+    "lon": 6.8500,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Idrettsfag",
+      "Påbygg"
+    ],
+    "website": "https://www.sygna.vgs.no"
+  }
+]

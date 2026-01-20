@@ -1,0 +1,107 @@
+[
+  {
+    "name": "Laksevåg og Bergen maritime vidaregåande skule",
+    "address": "Odd Frantzens plass 6, 5008 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3897,
+    "lon": 5.3306,
+    "program": [
+      "Bygg- og anleggsteknikk",
+      "Tømrer",
+      "Elektro og datateknologi",
+      "Automatisering",
+      "Elenergi og ekom",
+      "Maritim elektriker",
+      "Teknologi- og industrifag",
+      "Kjemiprosess og laboratoriefag",
+      "Brønnteknikk",
+      "Maritime fag"
+    ],
+    "website": "https://www.lbm.vgs.no"
+  },
+
+  {
+    "name": "Amalie Skram videregående skole",
+    "address": "Lungegårdskaien 40, 5015 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3925,
+    "lon": 5.3243,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Informasjonsteknologi og medieproduksjon",
+      "Medium og kommunikasjon",
+      "Sal, service og reiseliv",
+      "Påbygg"
+    ],
+    "website": "https://www.amalieskram.vgs.no"
+  },
+  {
+    "name": "Årstad videregående skole",
+    "address": "Danmarks plass 7, 5058 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3737,
+    "lon": 5.3411,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Informasjonsteknologi og medieproduksjon",
+      "Påbygg"
+    ],
+    "website": "https://www.arstad.vgs.no"
+  },
+  {
+    "name": "Bergen Katedralskole",
+    "address": "Kong Oscars gate 36, 5017 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Offentlig",
+    "region": "Bergen",
+    "lat": 60.3920,
+    "lon": 5.3260,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Internasjonal Baccalaureate (IB)",
+      "Påbygg"
+    ],
+    "website": "https://www.katten.vgs.no"
+  },
+  {
+    "name": "Bergen Private Gymnas (BPG)",
+    "address": "Strandgaten 197, 5004 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Privat",
+    "region": "Bergen",
+    "lat": 60.3950,
+    "lon": 5.3180,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi"
+    ],
+    "website": "https://www.bpg.no"
+  },
+  {
+    "name": "Metis videregående skole",
+    "address": "Lars Hilles gate 17, 5008 Bergen",
+    "municipality": "Bergen",
+    "ownership": "Privat",
+    "region": "Bergen",
+    "lat": 60.3895,
+    "lon": 5.3300,
+    "program": [
+      "Studiespesialisering",
+      "Helse- og oppvekstfag",
+      "Påbygg"
+    ],
+    "website": "https://www.metis.no"
+  }
+]

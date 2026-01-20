@@ -1,0 +1,116 @@
+[
+  {
+    "name": "Stord vidaregåande skule",
+    "address": "Saghaugen 3, 5411 Stord",
+    "municipality": "Stord",
+    "ownership": "Offentlig",
+    "region": "Sunnhordland",
+    "lat": 59.7790,
+    "lon": 5.5005,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Helse- og oppvekstfag",
+      "Elektro og datateknologi",
+      "Teknologi- og industrifag",
+      "Bygg- og anleggsteknikk",
+      "Restaurant- og matfag",
+      "Informasjonsteknologi og medieproduksjon",
+      "Påbygg"
+    ],
+    "website": "https://www.stord.vgs.no"
+  },
+  {
+    "name": "Bømlo vidaregåande skule",
+    "address": "Hollundsdalen 3, 5430 Bremnes",
+    "municipality": "Bømlo",
+    "ownership": "Offentlig",
+    "region": "Sunnhordland",
+    "lat": 59.7960,
+    "lon": 5.2400,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Bygg- og anleggsteknikk",
+      "Restaurant- og matfag",
+      "Påbygg"
+    ],
+    "website": "https://www.bomlo.vgs.no"
+  },
+  {
+    "name": "Kvamme vidaregåande skule (tidl. Kvinnherad vgs)",
+    "address": "Skålagato 36, 5470 Rosendal",
+    "municipality": "Kvinnherad",
+    "ownership": "Offentlig",
+    "region": "Sunnhordland",
+    "lat": 59.9850,
+    "lon": 6.0100,
+    "program": [
+      "Studiespesialisering",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Naturbruk",
+      "Påbygg"
+    ],
+    "website": "https://www.kvinnherad.vgs.no"
+  },
+  {
+    "name": "Rubbestadnes vidaregåande skule",
+    "address": "Høgskulevegen 14, 5420 Rubbestadneset",
+    "municipality": "Bømlo",
+    "ownership": "Offentlig",
+    "region": "Sunnhordland",
+    "lat": 59.8200,
+    "lon": 5.3100,
+    "program": [
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Maritime fag",
+      "Påbygg"
+    ],
+    "website": "https://www.rubbestadnes.vgs.no"
+  },
+  {
+    "name": "Fitjar vidaregåande skule",
+    "address": "Gamle Havnavegen 2, 5419 Fitjar",
+    "municipality": "Fitjar",
+    "ownership": "Offentlig",
+    "region": "Sunnhordland",
+    "lat": 59.9180,
+    "lon": 5.3160,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Påbygg"
+    ],
+    "website": "https://www.fitjar.vgs.no"
+  },
+  {
+    "name": "Tysnes vidaregåande skule",
+    "address": "Uggdalsvegen 301, 5685 Uggdal",
+    "municipality": "Tysnes",
+    "ownership": "Offentlig",
+    "region": "Sunnhordland",
+    "lat": 60.0160,
+    "lon": 5.5800,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Påbygg"
+    ],
+    "website": "https://www.tysnes.vgs.no"
+  },
+  {
+    "name": "Sveio Montessori vidaregåande",
+    "address": "Sveiogata 70, 5550 Sveio",
+    "municipality": "Sveio",
+    "ownership": "Privat",
+    "region": "Sunnhordland",
+    "lat": 59.5430,
+    "lon": 5.3500,
+    "program": [
+      "Studiespesialisering"
+    ],
+    "website": "https://www.sveiomontessori.no"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Voss vidaregåande skule",
+    "address": "Gymnasvegen 5, 5700 Voss",
+    "municipality": "Voss",
+    "ownership": "Offentlig",
+    "region": "Voss",
+    "lat": 60.6280,
+    "lon": 6.4140,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Idrettsfag",
+      "Musikk, dans og drama",
+      "Helse- og oppvekstfag",
+      "Elektro og datateknologi",
+      "Teknologi- og industrifag",
+      "Bygg- og anleggsteknikk",
+      "Restaurant- og matfag",
+      "Naturbruk",
+      "Påbygg"
+    ],
+    "website": "https://www.voss.vgs.no"
+  }
+]

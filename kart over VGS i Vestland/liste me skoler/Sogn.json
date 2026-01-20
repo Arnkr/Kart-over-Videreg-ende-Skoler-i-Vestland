@@ -1,0 +1,103 @@
+[
+  {
+    "name": "Sogndal vidaregåande skule",
+    "address": "Fossvegen 3, 6856 Sogndal",
+    "municipality": "Sogndal",
+    "ownership": "Offentlig",
+    "region": "Sogn",
+    "lat": 61.2290,
+    "lon": 7.1010,
+    "program": [
+      "Studiespesialisering",
+      "Realfag",
+      "Språk, samfunnsfag og økonomi",
+      "Idrettsfag",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Informasjonsteknologi og medieproduksjon",
+      "Restaurant- og matfag",
+      "Påbygg"
+    ],
+    "website": "https://www.sogndal.vgs.no"
+  },
+  {
+    "name": "Årdal vidaregåande skule",
+    "address": "Storevegen 8, 6884 Øvre Årdal",
+    "municipality": "Årdal",
+    "ownership": "Offentlig",
+    "region": "Sogn",
+    "lat": 61.3160,
+    "lon": 7.8060,
+    "program": [
+      "Studiespesialisering",
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Påbygg"
+    ],
+    "website": "https://www.aardal.vgs.no"
+  },
+  {
+    "name": "Luster vidaregåande skule",
+    "address": "Gaupnegrandane 20, 6868 Gaupne",
+    "municipality": "Luster",
+    "ownership": "Offentlig",
+    "region": "Sogn",
+    "lat": 61.4080,
+    "lon": 7.2970,
+    "program": [
+      "Helse- og oppvekstfag",
+      "Teknologi- og industrifag",
+      "Naturbruk",
+      "Påbygg"
+    ],
+    "website": "https://www.luster.vgs.no"
+  },
+  {
+    "name": "Høyanger vidaregåande skule",
+    "address": "Skulevegen 10, 6993 Høyanger",
+    "municipality": "Høyanger",
+    "ownership": "Offentlig",
+    "region": "Sogn",
+    "lat": 61.2160,
+    "lon": 6.0700,
+    "program": [
+      "Teknologi- og industrifag",
+      "Elektro og datateknologi",
+      "Helse- og oppvekstfag",
+      "Påbygg"
+    ],
+    "website": "https://www.hoyanger.vgs.no"
+  },
+  {
+    "name": "Aurland vidaregåande skule",
+    "address": "Vangen 1, 5745 Aurland",
+    "municipality": "Aurland",
+    "ownership": "Offentlig",
+    "region": "Sogn",
+    "lat": 60.9070,
+    "lon": 7.1880,
+    "program": [
+      "Naturbruk",
+      "Reiseliv",
+      "Påbygg"
+    ],
+    "website": "https://www.aurland.vgs.no"
+  },
+  {
+    "name": "Sogn Jord- og Hagebruksskule",
+    "address": "Skulevegen 24, 5745 Aurland",
+    "municipality": "Aurland",
+    "ownership": "Offentlig",
+    "region": "Sogn",
+    "lat": 60.9075,
+    "lon": 7.1890,
+    "program": [
+      "Naturbruk økologisk",
+      "Bærekraftig landbruk",
+      "Påbygg"
+    ],
+    "website": "https://www.sjh.no"
+  }
+]
