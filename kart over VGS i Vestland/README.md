@@ -20,7 +20,7 @@ Kart over Videregående Skoler i Vestland er utviklet for å gjøre informasjon 
 
 Kartet dekker både offentlige skoler drevet av Vestland fylkeskommune og private alternativer, inkludert skoler med spesialiserte programmer som maritime fag, musikk, idrett og internasjonal baccalaureate.
 
-## �🚀 Funksjoner
+## 🚀 Funksjoner
 
 - **Interaktivt kart** med OpenStreetMap-fliser
 - **Klikkbare markører** for hver videregående skole med detaljert informasjon
@@ -157,5 +157,6 @@ Dette prosjektet er åpent og fritt tilgjengelig. Dataene er basert på offentli
 ---
 
 *Opprettet med ❤️ for bedre utdanningsinformasjon i Vestland*
+
 
 
