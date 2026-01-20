@@ -158,3 +158,6 @@ Dette prosjektet er åpent og fritt tilgjengelig. Dataene er basert på offentli
 
 *Opprettet med ❤️ for bedre utdanningsinformasjon i Vestland*
 
+
+
+
